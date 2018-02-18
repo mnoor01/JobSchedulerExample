@@ -35,7 +35,7 @@ public class JobUtil {
         //these and other settings can be specified
 
         //get the JobScheduler service that will be scheduling our Jobs
-        JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
+        JobScheduler jobScheduler = (JobScheduler) context.getSystemService(Context.JOB_SCHEDULER_SERVICE);
 
         //build the job and schedule it if the jobScheduler is not null
         if (jobScheduler != null) {

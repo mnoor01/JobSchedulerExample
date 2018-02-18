@@ -19,7 +19,7 @@ public class StartServiceReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         /* schedule a job but make sure the broadcasted intent is the intent we are expecting. This protects our app from receiving phony broadcasts made by third party sources (think Malware or malicious third party apps) */
-        if (Objects.equals(intent.getAction(), Intent.ACTION_HEADSET_PLUG)) {
+        if (Objects.equals(intent.getAction(), Intent.ACTION_BATTERY_LOW)) {
             JobUtil.scheduleJob(context);
         }
     }

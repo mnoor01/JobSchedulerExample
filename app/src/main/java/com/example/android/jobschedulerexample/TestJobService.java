@@ -14,18 +14,23 @@ import com.example.android.jobschedulerexample.util.JobUtil;
 
 @RequiresApi(api = Build.VERSION_CODES.M)
 public class TestJobService extends JobService {
+    private MJobExecutor mJobExecutor;
+
 
     @Override
     public boolean onStartJob(JobParameters jobParameters) {
+        mJobExecutor= new MJobExecutor(getApplicationContext());
         //Show a Toast when the headset is plugged in our out
-        Toast.makeText(getApplicationContext(), "Headset Plugged In!", Toast.LENGTH_SHORT).show();
 
+        Toast.makeText(getApplicationContext(), " Battery Low!", Toast.LENGTH_SHORT).show();
+       mJobExecutor.execute();
         return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters jobParameters) {
         //reschedule the job after it's been executed if we want this to be a reocurring action.
+        mJobExecutor.cancel(true);
         JobUtil.scheduleJob(getApplicationContext());
         return true;
     }
